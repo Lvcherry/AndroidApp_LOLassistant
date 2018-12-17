@@ -13,8 +13,8 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.PlatformDb;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
+import cn.sharesdk.wechat.friends.Wechat;
 
 import com.ryan.newsapp.R;
 import com.ryan.newsapp.fragment.AccountFragment;
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 platform = ShareSDK.getPlatform(QQ.NAME);
             }break;
             case R.id.login_weixin:{
-                platform = ShareSDK.getPlatform(SinaWeibo.NAME);
+                platform = ShareSDK.getPlatform(Wechat.NAME);
             }break;
         }
 

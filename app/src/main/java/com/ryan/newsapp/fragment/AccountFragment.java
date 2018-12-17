@@ -19,10 +19,15 @@ import com.ryan.newsapp.ui.LoginActivity;
 
 import com.ryan.newsapp.R;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.tencent.qq.QQ;
+
 public class AccountFragment extends Fragment implements View.OnClickListener {
 
     ImageView iv_head;
     TextView accountName;
+    TextView accountExit;
 
     @Nullable
     @Override
@@ -41,15 +46,31 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     private void setupViews(View view) {
         iv_head = (ImageView) view.findViewById(R.id.account_head);
         accountName = (TextView) view.findViewById(R.id.account_username);
+        accountExit = (TextView) view.findViewById(R.id.account_exit);
         iv_head.setOnClickListener(this);
         accountName.setOnClickListener(this);
+        accountExit.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        startActivityForResult(intent,1);
+        switch (v.getId()){
+            case R.id.account_head:{
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivityForResult(intent,1);
+            }break;
+            case R.id.account_username:{
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivityForResult(intent,1);
+            }
+            case R.id.account_exit:{
+                Platform platform=ShareSDK.getPlatform(QQ.NAME);
+                if (platform != null){
+                    platform.removeAccount();
+                }
+            }break;
+        }
 
 
     }

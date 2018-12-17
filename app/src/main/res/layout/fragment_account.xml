@@ -39,6 +39,13 @@
                     android:text="立即登录"
                     android:textColor="#FFF" />
 
+                <TextView
+                    android:id="@+id/account_exit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="退出登录"
+                    android:textColor="#FFF" />
+
             </LinearLayout>
 
 
