@@ -19,6 +19,7 @@ import com.ryan.newsapp.fragment.AccountFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    //sdfdjkkl
     private String[] tabTexts ={
             "新闻", "视频", "发现", "我",
     };
