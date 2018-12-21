@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="legend_position">
+        <item>位置</item>
+        <item>上单</item>
+        <item>打野</item>
+        <item>中单</item>
+        <item>ADC</item>
+        <item>辅助</item>
+    </string-array>
+    <string-array name="legend_damage_type">
+        <item>伤害</item>
+        <item>AP(魔法伤害)</item>
+        <item>AD(物理伤害)</item>
+    </string-array>
+    <string-array name="legend_point">
+        <item>点券</item>
+        <item>1000</item>
+        <item>1500</item>
+        <item>2000</item>
+        <item>2500</item>
+        <item>3000</item>
+        <item>3500</item>
+        <item>4000</item>
+        <item>4500</item>
+    </string-array>
+    <string-array name="legend_gold">
+        <item>金币</item>
+        <item>450</item>
+        <item>1350</item>
+        <item>3150</item>
+        <item>4800</item>
+        <item>6300</item>
+    </string-array>
+
+</resources>

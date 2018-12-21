@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/legend_name_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/editsharp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp">
+     <Spinner
+        android:id="@+id/legend_position"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+         android:layout_alignParentLeft="true"
+         android:entries="@array/legend_position"
+
+         />
+        <Spinner
+            android:id="@+id/legend_damage_type"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_toEndOf="@id/legend_position"
+            android:layout_toRightOf="@id/legend_position"
+            android:entries="@array/legend_damage_type"
+
+            />
+        <Spinner
+            android:id="@+id/legend_point"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_toStartOf="@id/legend_gold"
+            android:layout_toLeftOf="@id/legend_gold"
+            android:entries="@array/legend_point"
+            />
+        <Spinner
+            android:id="@+id/legend_gold"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:entries="@array/legend_gold"
+            />
+
+
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -38,4 +38,5 @@ dependencies {
     implementation files('libs/ShareSDK-Wechat-Core-2.7.10.jar')
     implementation files('libs/ShareSDK-Wechat-Favorite-2.7.10.jar')
     implementation files('libs/ShareSDK-Wechat-Moments-2.7.10.jar')
+
 }
