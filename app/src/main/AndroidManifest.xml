@@ -31,6 +31,7 @@
             </intent-filter>
         </activity>
 
+
         <activity
             android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
@@ -38,7 +39,9 @@
 
         <activity android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/LoginActivityTheme"></activity>
+            android:theme="@style/LoginActivityTheme"/>
+
+        <activity android:name=".ui.LegendActivity"/>
 
         <activity
             android:name="com.mob.tools.MobUIShell"
