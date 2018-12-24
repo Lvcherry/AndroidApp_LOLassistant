@@ -53,6 +53,15 @@
             android:entries="@array/legend_gold"
             />
 
+        <GridView
+            android:id="@+id/legend_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below='@id/legend_gold'
+            android:numColumns="4"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            />
         <ImageView
             android:id = "@+id/legend_img"
             android:layout_width="200dp"
