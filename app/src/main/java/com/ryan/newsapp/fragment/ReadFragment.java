@@ -74,7 +74,8 @@ public class ReadFragment  extends Fragment {
             datalist.add(map);
         }
 
-        mgr.saveImage(R.drawable.legend_akali,"akali","top","ap",3333,333,getContext());
+       // mgr.saveImage(R.drawable.legend_img_akali,"akali","top","ap",3333,333,getContext());
+        mgr.saveImage(R.drawable.legend_img_aike,"aike","mid","ap",3000,300,getContext());
 
     }
 

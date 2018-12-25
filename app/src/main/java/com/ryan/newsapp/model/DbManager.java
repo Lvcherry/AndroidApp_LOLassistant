@@ -41,7 +41,7 @@ public class DbManager {
         cv.put("legend_damage",legend_damage);
         cv.put("legend_point",legend_point);
         cv.put("legend_gold",legend_gold);
-        db.insert("legend_table",null,cv);
+        db.insert("lege3nd_table",null,cv);
         db.close();
     }
 
@@ -52,7 +52,7 @@ public class DbManager {
         Cursor cur = null;
         try{
             cur = db.query("legend_table", new String[]{"legend_name", "legend_position", "legend_damage", "legend_point", "legend_gold", "legend_img"}, null, null, null, null, null);
-            if(cur.moveToFirst()){
+            if(cur.moveToNext()){
                 imgData = cur.getBlob(cur.getColumnIndex("legend_img"));
             }
         }catch (Exception e){

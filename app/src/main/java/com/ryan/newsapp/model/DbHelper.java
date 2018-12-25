@@ -12,7 +12,7 @@ public class DbHelper  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        String sql = "create table legend_table(legend_name varchar(20) primary key,legend_position varchar(20),legend_damage varchar(2),legend_point integer,legend_gold integer,legend_img BLOB )";
+        String sql = "create table legend_table(legend_id integer primary key autoincrement,legend_name varchar(20) ,legend_position varchar(20),legend_damage varchar(2),legend_point integer,legend_gold integer,legend_img BLOB )";
         db.execSQL(sql);
     }
 
