@@ -1,3 +1,4 @@
+
 package com.ryan.newsapp.model;
 
 import android.content.ContentValues;
