@@ -1,6 +1,8 @@
 package com.ryan.newsapp.fragment;
 
 import android.app.Activity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 
 import com.ryan.newsapp.R;
+import com.ryan.newsapp.model.DbHelper;
 import com.ryan.newsapp.model.DbManager;
 
 import java.util.ArrayList;
@@ -25,8 +28,9 @@ import java.util.Map;
 
 public class ReadFragment  extends Fragment {
 
-
+    private int sign ;
     private DbManager mgr;
+    private DbHelper dbHelper;
     private ImageView imageView ;
     private GridView gridView;
     private List<Map<String,Object>> datalist;
@@ -51,6 +55,7 @@ public class ReadFragment  extends Fragment {
 
 
 
+
     @Override
     public void onActivityCreated(Bundle saveInstanceState){
         super.onActivityCreated(saveInstanceState);
@@ -66,6 +71,8 @@ public class ReadFragment  extends Fragment {
 
     }
 
+
+
     private void init_data(DbManager mgr){
         for(int i = 0;i<icon.length;i++){
             Map<String,Object> map = new HashMap<String, Object>();
@@ -74,8 +81,13 @@ public class ReadFragment  extends Fragment {
             datalist.add(map);
         }
 
+        if(ifnull()==0){
+            mgr.saveImage(R.drawable.legend_img_longwang,"longwang","top","ad",2222,222,getContext());
+        }
        // mgr.saveImage(R.drawable.legend_img_akali,"akali","top","ap",3333,333,getContext());
-        mgr.saveImage(R.drawable.legend_img_aike,"aike","mid","ap",3000,300,getContext());
+        // mgr.saveImage(R.drawable.legend_img_aike,"aike","mid","ap",3000,300,getContext());
+        //mgr.saveImage(R.drawable.legend_img_weien,"weien","adc","ad",2222,222,getContext());
+
 
     }
 
@@ -90,5 +102,16 @@ public class ReadFragment  extends Fragment {
         }
     }
 
+    private int ifnull(){
+        dbHelper = new DbHelper(getContext());
+        SQLiteDatabase db  = dbHelper.getWritableDatabase();
+        Cursor cur = db.query("legend_table",null,null,null,null,null,null);
+        sign = cur.getCount();
+        cur.close();
+        db.close();
+        return sign;
+
+
+    }
 
 }
