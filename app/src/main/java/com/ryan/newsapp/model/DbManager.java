@@ -53,7 +53,7 @@ public class DbManager {
         Cursor cur = null;
         try{
             cur = db.query("legend_table", new String[]{"legend_name", "legend_position", "legend_damage", "legend_point", "legend_gold", "legend_img"}, null, null, null, null, null);
-            if(cur.moveToLast()){
+            if(cur.moveToPosition(100)){
                 imgData = cur.getBlob(cur.getColumnIndex("legend_img"));
             }
         }catch (Exception e){

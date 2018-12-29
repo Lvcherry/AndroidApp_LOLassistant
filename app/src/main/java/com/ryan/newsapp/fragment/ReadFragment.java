@@ -13,19 +13,27 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.ryan.newsapp.R;
+import com.ryan.newsapp.adapter.GridViewItem;
+import com.ryan.newsapp.adapter.LegendAdapter;
 import com.ryan.newsapp.model.DbHelper;
 import com.ryan.newsapp.model.DbManager;
+
+import org.w3c.dom.Text;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Arrays;
 
 public class ReadFragment  extends Fragment {
 
@@ -34,13 +42,17 @@ public class ReadFragment  extends Fragment {
     private DbHelper dbHelper;
     private ImageView imageView ;
     private GridView gridView;
-    private Spinner spinner_position = getView().findViewById(R.id.legend_position);
-    private Spinner spinner_damage = getView().findViewById(R.id.legend_damage_type);
-    private Spinner getSpinner_point = getView().findViewById(R.id.legend_point);
-    private Spinner spinner_gold = getView().findViewById(R.id.legend_gold);
-    private List<Map<String,Object>> datalist;
-    private int [] icon = {R.drawable.legend_akali,R.drawable.legend_vyen,R.drawable.legend_yaduokesi,R.drawable.legend_xindela};
-    private String [] iconName = {"阿卡丽","薇恩","亚多克斯","辛德拉"};
+    private Spinner spinner_position ;
+    private Spinner spinner_damage;
+    private Spinner spinner_point ;
+    private Spinner spinner_gold ;
+    private String string_position="位置";
+    private String string_damage="伤害";
+    private String int_point="点券";
+    private String int_gold="金币";
+    private List<HashMap<String,GridViewItem>> hashMapList ;
+    private Bitmap icon ;
+    private String [] iconName = {"xxxxxx"};
     private SimpleAdapter simpleAdapter;
 
 
@@ -56,6 +68,11 @@ public class ReadFragment  extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
+        spinner_position = getView().findViewById(R.id.legend_position);
+        spinner_damage = getView().findViewById(R.id.legend_damage_type);
+        spinner_point = getView().findViewById(R.id.legend_point);
+        spinner_gold = getView().findViewById(R.id.legend_gold);
     }
 
 
@@ -65,31 +82,100 @@ public class ReadFragment  extends Fragment {
     public void onActivityCreated(Bundle saveInstanceState){
         super.onActivityCreated(saveInstanceState);
 
-        gridView = (GridView)getView().findViewById(R.id.legend_grid);
-        datalist = new ArrayList<Map<String,Object>>();
-        simpleAdapter = new SimpleAdapter(getActivity(),datalist,R.layout.grid_item,new String[] {"image","text"},new int[] {R.id.grid_item_image,R.id.grid_item_text});
-        gridView.setAdapter(simpleAdapter);
+
+        //根据下拉表内容改变icon和iconName的内容
+        //   init_array()
+
+        gridView = getView().findViewById(R.id.legend_grid);
+        hashMapList = new ArrayList<HashMap<String, GridViewItem>>();
+        //datalist = new ArrayList<Map<String,Object>>();
+        final LegendAdapter legendAdapter = new LegendAdapter(getContext(),hashMapList);
+        //simpleAdapter = new SimpleAdapter(getActivity(),datalist,R.layout.grid_item,new String[] {"image","text"},new int[] {R.id.grid_item_image,R.id.grid_item_text});
+        gridView.setAdapter(legendAdapter);
         imageView  = getView().findViewById(R.id.legend_img);
         mgr = new DbManager(getActivity());
         init_data();
-        readImage();
+
+
+        //设置下拉表监听获取文本；
+        spinner_position.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                string_position=(String) spinner_position.getSelectedItem();
+                hashMapList.clear();
+                legendAdapter.notifyDataSetChanged();
+                data_search();
+
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        spinner_damage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                string_damage=(String) spinner_damage.getSelectedItem();
+                hashMapList.clear();
+                legendAdapter.notifyDataSetChanged();
+                data_search();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        spinner_point.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int_point = (String)spinner_point.getSelectedItem();
+                hashMapList.clear();
+                legendAdapter.notifyDataSetChanged();
+                data_search();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        spinner_gold.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                int_gold=(String) spinner_gold.getSelectedItem();
+                hashMapList.clear();
+                legendAdapter.notifyDataSetChanged();
+                data_search();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+
+
+        //readImage();
+
 
     }
 
 
 
     private void init_data(){
-        for(int i = 0;i<icon.length;i++){
+        /*for(int i = 0;i<icon.length;i++){
             Map<String,Object> map = new HashMap<String, Object>();
             map.put("image",icon[i]);
             map.put("text",iconName[i]);
 
             datalist.add(map);
-        }
+        }*/
 
         if(ifNull()==0){
             legend_img_init();
         }
+
 
 
 
@@ -262,4 +348,64 @@ public class ReadFragment  extends Fragment {
         mgr.saveImage(R.drawable.legend_img_laoshu,"瘟疫之源","adc","ad",3000,4800,getContext());
         mgr.saveImage(R.drawable.legend_img_longwang,"铸星龙王","mid","ap",4500,6300,getContext());
     }
+
+
+
+    private void data_search(){
+
+
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT * FROM LEGEND_TABLE WHERE 1=1 ");
+        if(!string_position.equals("位置")){
+            sql.append(" AND LEGEND_POSITION = '"+string_position+"' ");
+
+        }
+        if(!string_damage.equals("伤害")){
+            sql.append(" AND LEGEND_DAMAGE = '"+string_damage+"' ");
+        }
+        if(!int_gold.equals("金币")){
+            sql.append(" AND LEGEND_GOLD = '"+int_gold+"' ");
+
+        }
+        if(!int_point.equals("点券")){
+            sql.append(" AND LEGEND_POINT = '"+int_point+"'");
+        }
+        dbHelper = new DbHelper(getContext());
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        Cursor cur = db.rawQuery(sql.toString(),null);
+        //testText.setText(sql.toString());
+       while (cur.moveToNext()){
+
+           /*for(int i=0;i<cur.getCount();i++)
+           {*/
+             //  Map<String,Object> map = new HashMap<String,Object>();
+               HashMap<String,GridViewItem> tempHashMap = new HashMap<String, GridViewItem>();
+            //   map.put("image",cur.getInt(cur.getColumnIndex("legend_img")));
+               byte[] imgData ;
+               imgData = cur.getBlob(cur.getColumnIndex("legend_img"));
+               Bitmap imgBitmap = BitmapFactory.decodeByteArray(imgData,0,imgData.length);
+
+               GridViewItem tempItem = new GridViewItem(imgBitmap,cur.getString(cur.getColumnIndex("legend_name")));
+
+                tempHashMap.put("item",tempItem);
+                hashMapList.add(tempHashMap);
+               //map.put("image",imgBitmap);
+            //   map.put("text",cur.getString(cur.getColumnIndex("legend_name")));
+
+              // datalist.add(map);
+           //}
+           /*byte[] imgData ;
+           imgData = cur.getBlob(cur.getColumnIndex("legend_img"));
+           Bitmap imgBitmap = BitmapFactory.decodeByteArray(imgData,0,imgData.length);
+           imageView.setImageBitmap(imgBitmap);*/
+       }
+        cur.close();
+        db.close();
+
+
+
+    }
+
+
 }

@@ -2,16 +2,16 @@
 <resources>
     <string-array name="legend_position">
         <item>位置</item>
-        <item>上单</item>
-        <item>打野</item>
-        <item>中单</item>
-        <item>ADC</item>
-        <item>辅助</item>
+        <item>top</item>
+        <item>jug</item>
+        <item>mid</item>
+        <item>adc</item>
+        <item>sup</item>
     </string-array>
     <string-array name="legend_damage_type">
         <item>伤害</item>
-        <item>AP(魔法伤害)</item>
-        <item>AD(物理伤害)</item>
+        <item>ap</item>
+        <item>ad</item>
     </string-array>
     <string-array name="legend_point">
         <item>点券</item>
