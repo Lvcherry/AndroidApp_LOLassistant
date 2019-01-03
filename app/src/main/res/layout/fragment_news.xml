@@ -62,10 +62,24 @@
 
     </LinearLayout>
 
+    <ListView
+        android:id="@+id/legend_news_list"
+        android:divider="#ccc"
+        android:dividerHeight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
     <android.support.v4.view.ViewPager
         android:id="@+id/news_viewpager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+    
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

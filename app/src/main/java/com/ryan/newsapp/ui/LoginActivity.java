@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         iv_qq.setOnClickListener(this);
         iv_weixin.setOnClickListener(this);
         iv_back.setOnClickListener(this);
+
     }
 
     @Override

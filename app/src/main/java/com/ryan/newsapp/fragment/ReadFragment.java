@@ -1,47 +1,47 @@
 package com.ryan.newsapp.fragment;
 
-import android.app.Activity;
+
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import com.ryan.newsapp.R;
 import com.ryan.newsapp.adapter.GridViewItem;
 import com.ryan.newsapp.adapter.LegendAdapter;
 import com.ryan.newsapp.model.DbHelper;
 import com.ryan.newsapp.model.DbManager;
-
-import org.w3c.dom.Text;
+import com.ryan.newsapp.ui.LegendInfoActivity;
 
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Arrays;
+
 
 public class ReadFragment  extends Fragment {
+
+    public static String legend_name;
 
     private int sign ;
     private DbManager mgr;
     private DbHelper dbHelper;
-    private ImageView imageView ;
     private GridView gridView;
+    private GridViewItem tempGridViewItem;
     private Spinner spinner_position ;
     private Spinner spinner_damage;
     private Spinner spinner_point ;
@@ -51,9 +51,8 @@ public class ReadFragment  extends Fragment {
     private String int_point="点券";
     private String int_gold="金币";
     private List<HashMap<String,GridViewItem>> hashMapList ;
-    private Bitmap icon ;
-    private String [] iconName = {"xxxxxx"};
-    private SimpleAdapter simpleAdapter;
+    Typeface mTypeface;
+    private TextView mTextView;
 
 
     @Nullable
@@ -73,6 +72,7 @@ public class ReadFragment  extends Fragment {
         spinner_damage = getView().findViewById(R.id.legend_damage_type);
         spinner_point = getView().findViewById(R.id.legend_point);
         spinner_gold = getView().findViewById(R.id.legend_gold);
+        mTextView = getView().findViewById(R.id.legend_of_legend);
     }
 
 
@@ -88,13 +88,25 @@ public class ReadFragment  extends Fragment {
 
         gridView = getView().findViewById(R.id.legend_grid);
         hashMapList = new ArrayList<HashMap<String, GridViewItem>>();
-        //datalist = new ArrayList<Map<String,Object>>();
         final LegendAdapter legendAdapter = new LegendAdapter(getContext(),hashMapList);
-        //simpleAdapter = new SimpleAdapter(getActivity(),datalist,R.layout.grid_item,new String[] {"image","text"},new int[] {R.id.grid_item_image,R.id.grid_item_text});
         gridView.setAdapter(legendAdapter);
-        imageView  = getView().findViewById(R.id.legend_img);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //点击GridViewItem获得英雄名字
+                 tempGridViewItem = hashMapList.get(position).get("item");
+                 legend_name = tempGridViewItem.title;
+                Toast.makeText(getActivity(),legend_name,Toast.LENGTH_LONG).show();
+                getActivity().startActivity(new Intent(getContext(), LegendInfoActivity.class));
+            }
+        });
+
         mgr = new DbManager(getActivity());
         init_data();
+
+        mTypeface  = Typeface.createFromAsset(getActivity().getAssets(),"Elements.ttf");
+        mTextView.setTypeface(mTypeface);
 
 
         //设置下拉表监听获取文本；
@@ -156,41 +168,20 @@ public class ReadFragment  extends Fragment {
 
 
 
-        //readImage();
-
-
     }
 
 
 
     private void init_data(){
-        /*for(int i = 0;i<icon.length;i++){
-            Map<String,Object> map = new HashMap<String, Object>();
-            map.put("image",icon[i]);
-            map.put("text",iconName[i]);
 
-            datalist.add(map);
-        }*/
+
 
         if(ifNull()==0){
             legend_img_init();
         }
-
-
-
-
     }
 
-    private void readImage(){
-        byte[] imgData = mgr.readImage();
-        if(imgData!=null){
-            Bitmap imageBitmap = BitmapFactory.decodeByteArray(imgData,0,imgData.length);
-            imageView.setImageBitmap(imageBitmap);
-        }
-        else{
-            imageView.setBackgroundResource(R.drawable.legend_vyen);
-        }
-    }
+
 
     private int ifNull(){
         dbHelper = new DbHelper(getContext());
@@ -374,37 +365,20 @@ public class ReadFragment  extends Fragment {
         dbHelper = new DbHelper(getContext());
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         Cursor cur = db.rawQuery(sql.toString(),null);
-        //testText.setText(sql.toString());
+
        while (cur.moveToNext()){
 
-           /*for(int i=0;i<cur.getCount();i++)
-           {*/
-             //  Map<String,Object> map = new HashMap<String,Object>();
                HashMap<String,GridViewItem> tempHashMap = new HashMap<String, GridViewItem>();
-            //   map.put("image",cur.getInt(cur.getColumnIndex("legend_img")));
                byte[] imgData ;
                imgData = cur.getBlob(cur.getColumnIndex("legend_img"));
                Bitmap imgBitmap = BitmapFactory.decodeByteArray(imgData,0,imgData.length);
-
                GridViewItem tempItem = new GridViewItem(imgBitmap,cur.getString(cur.getColumnIndex("legend_name")));
-
                 tempHashMap.put("item",tempItem);
                 hashMapList.add(tempHashMap);
-               //map.put("image",imgBitmap);
-            //   map.put("text",cur.getString(cur.getColumnIndex("legend_name")));
 
-              // datalist.add(map);
-           //}
-           /*byte[] imgData ;
-           imgData = cur.getBlob(cur.getColumnIndex("legend_img"));
-           Bitmap imgBitmap = BitmapFactory.decodeByteArray(imgData,0,imgData.length);
-           imageView.setImageBitmap(imgBitmap);*/
        }
         cur.close();
         db.close();
-
-
-
     }
 
 

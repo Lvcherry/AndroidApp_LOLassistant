@@ -32,5 +32,14 @@
         <item>4800</item>
         <item>6300</item>
     </string-array>
+    <string-array name="legend_news">
+        <item>人物志：Ambition- -雄心热血终不悔</item>
+        <item>12月23日TOP5:JackeyLove 卡莎力挽狂澜高地三杀</item>
+        <item>假期五黑阵容推荐 盲僧亚索成上分核心</item>
+        <item>你认为吸血鬼适合新版本的赛场吗</item>
+        <item>2019新年活动公告</item>
+        <item>笑恨平生到不存欢愉 Xx苦甜交杂的一年</item>
+        <item>冬季转会窗口关闭 LPL战队阵容公布</item>
+    </string-array>
 
 </resources>

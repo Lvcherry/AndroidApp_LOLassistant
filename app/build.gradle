@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.ryan.newsapp"
-        minSdkVersion 15
+        minSdkVersion 26
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -40,4 +40,5 @@ dependencies {
     implementation files('libs/ShareSDK-Wechat-Moments-2.7.10.jar')
 
 
+    implementation files('libs/mysql-connector-java-5.1.47-bin.jar')
 }

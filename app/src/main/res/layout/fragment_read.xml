@@ -5,19 +5,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LegendActivity">
+    android:background="@drawable/background"
+    >
 
-
-    <EditText
-        android:id="@+id/legend_name_search"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:src="@drawable/legend_img_aiweng"/>
+    <TextView
+        android:id="@+id/legend_of_legend"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/editsharp" />
+        android:layout_height="60dp"
+        android:background="@drawable/editsharp"
+        android:text="League of Legend"
+
+        android:textSize="38sp"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="70dp">
      <Spinner
         android:id="@+id/legend_position"
         android:layout_width="100dp"
@@ -63,17 +71,6 @@
             android:horizontalSpacing="10dp"
             android:verticalSpacing="10dp"
             />
-        <ImageView
-            android:id = "@+id/legend_img"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerInParent="true"
-            />
-        <TextView
-            android:id="@+id/testText"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/legend_img"/>
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
