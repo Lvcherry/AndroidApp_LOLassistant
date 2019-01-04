@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/ivPic"
+        android:layout_width="50dp"
+        android:layout_height="58dp"
+        android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="244dp"
+        android:layout_height="39dp"
+        android:layout_toRightOf="@id/ivPic"
+        android:text="title"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tvDesc"
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTitle"
+        android:layout_toRightOf="@id/ivPic"
+        android:text="desc" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="73dp"
+        android:layout_height="34dp"
+        android:layout_alignParentRight="true"
+        android:text="time"
+        android:textSize="10sp" />
+
+</RelativeLayout>

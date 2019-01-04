@@ -1,8 +1,12 @@
 package com.ryan.newsapp.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,21 +24,34 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.ryan.newsapp.R;
 import com.ryan.newsapp.adapter.LegendNewsAdapter;
 import com.ryan.newsapp.adapter.ListViewItem;
+import com.ryan.newsapp.adapter.NewsAdapter;
 import com.ryan.newsapp.adapter.NewsViewPagerAdapter;
 import com.ryan.newsapp.fragment.NewsItemFragment;
 import com.ryan.newsapp.fragment.NewsAnnounceItemFragment;
+import com.ryan.newsapp.model.News;
+import com.ryan.newsapp.ui.BrowseNewsActivity;
+import com.ryan.newsapp.utils.HttpUtils;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class NewsFragment extends Fragment implements View.OnClickListener{
 
     private List<String> titlesList ;
     private List<ListViewItem> newList;
     private ListView newListView;
+
     private BaseAdapter baseAdapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -58,6 +75,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener{
         super.onViewCreated(view, savedInstanceState);
         setupViews(view);
 
+
         // viewPager.setAdapter(adapter);
         // tabLayout.setupWithViewPager(viewPager);
     }
@@ -78,9 +96,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener{
         //initNewsItemFragment();
         //adapter = new NewsViewPagerAdapter(getContext(),getChildFragmentManager(),fragmentList,titlesList);
 
-        newListView = (ListView) getActivity().findViewById(R.id.legend_news_list);
-
-
+        newListView = (ListView) getActivity().findViewById(R.id.lvNews);
         final LegendNewsAdapter  legendNewsAdapter = new LegendNewsAdapter(getContext(),newList);
         newListView.setAdapter(legendNewsAdapter);
 
@@ -91,7 +107,8 @@ public class NewsFragment extends Fragment implements View.OnClickListener{
 
 
     private void setListener(){
-         final WebView webView = getView().findViewById(R.id.webView);
+         //final WebView webView = getView().findViewById(R.id.webView);
+
         newListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent,View view,int position,long id){
@@ -106,39 +123,36 @@ public class NewsFragment extends Fragment implements View.OnClickListener{
                         Uri uri = Uri.parse("https://lol.qq.com/v/v2/detail.shtml?docid=510055603129601417");
                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
-                        Toast.makeText(getContext(),"lalalal",Toast.LENGTH_SHORT).show();
                     }
-                        break;
                     case 2:{
                         Uri uri = Uri.parse("https://lol.qq.com/news/detail.shtml?docid=11562116428336738179");
-                        Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
-                        break;
                     case 3:{
                         Uri uri = Uri.parse("http://bbs.lol.qq.com/forum.php?mod=viewthread&tid=4643029");
                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
-                        break;
                     case 4:{
                         Uri uri = Uri.parse("https://lol.qq.com/news/detail.shtml?docid=3713754086687503507");
                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
-                        break;
                     case 5:{
-                        Uri uri = Uri.parse("https://lol.qq.com/news/detail.shtml?docid=605138577224278138");
+                        Uri uri = Uri.parse("https://lol.qq.com/news/detail.shtml?docid=8080885356997070226");
                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
                     }
-                        break;
                     case 6:{
                         Uri uri = Uri.parse("https://lpl.qq.com/es/act/a20181126transfer/index.html");
                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         startActivity(intent);
+
+
+
                     }
-                        break;
+
                 }
             }
         });
@@ -161,7 +175,7 @@ public class NewsFragment extends Fragment implements View.OnClickListener{
     //初始化控件
     private void setupViews(View view) {
         tabLayout = (TabLayout) view.findViewById(R.id.news_tablayout);
-        viewPager = (ViewPager) view.findViewById(R.id.news_viewpager);
+        //viewPager = (ViewPager) view.findViewById(R.id.news_viewpager);
         iv_live = (ImageView) view.findViewById(R.id.news_live);
         iv_search = (ImageView) view.findViewById(R.id.news_search);
         iv_additem = (ImageView) view.findViewById(R.id.news_addmodule_iv);

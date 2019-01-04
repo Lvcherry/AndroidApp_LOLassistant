@@ -21,15 +21,15 @@ public class MainActivity extends AppCompatActivity {
 
     //sdfdjkkl
     private String[] tabTexts ={
-            "新闻", "视频", "发现", "我",
+            "新闻", "视频","发现", "我",
     };
 
     private int[] tabImgIds ={
-            R.drawable.selector_main_news, R.drawable.selector_main_video, R.drawable.selector_main_read, R.drawable.selector_main_account,
+            R.drawable.selector_main_news,R.drawable.selector_main_video, R.drawable.selector_main_read, R.drawable.selector_main_account,
     };
 
     private Class[] fragments ={
-            NewsFragment.class, VideoFragment.class, ReadFragment.class, AccountFragment.class,
+            NewsFragment.class, VideoFragment.class,ReadFragment.class, AccountFragment.class,
     };
 
     private FragmentTabHost tabHost;

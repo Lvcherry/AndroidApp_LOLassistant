@@ -27,11 +27,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ImageView iv_qq = (ImageView) findViewById(R.id.login_qq);
-        ImageView iv_weixin = (ImageView)findViewById(R.id.login_weixin);
+
         ImageView iv_back = (ImageView) findViewById(R.id.activity_login_iv_back);
 
         iv_qq.setOnClickListener(this);
-        iv_weixin.setOnClickListener(this);
+
         iv_back.setOnClickListener(this);
 
     }
@@ -45,9 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.login_qq:{
                 loginWeibobyShareSDK(view);
             }break;
-            case R.id.login_weixin:{
-                loginWeibobyShareSDK(view);
-            }break;
+
         }
     }
 
@@ -57,9 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.login_qq:{
                 platform = ShareSDK.getPlatform(QQ.NAME);
             }break;
-            case R.id.login_weixin:{
-                platform = ShareSDK.getPlatform(Wechat.NAME);
-            }break;
+
         }
 
         if(platform!=null){

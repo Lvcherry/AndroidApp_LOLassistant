@@ -173,9 +173,9 @@ public class LegendInfoActivity extends AppCompatActivity {
 
                 try{
                     Thread.sleep(100);
-                }catch (InterruptedException e){
-                    Log.e(TAG,e.toString());
-                }
+            }catch (InterruptedException e){
+                Log.e(TAG,e.toString());
+            }
 
                 try{
                     conn = DriverManager.getConnection("jdbc:mysql://47.101.145.218:3306/lolsquare?autoReconnect=true&useSSL=false","root","123456");

@@ -19,6 +19,8 @@ import com.ryan.newsapp.ui.LoginActivity;
 
 import com.ryan.newsapp.R;
 
+import org.w3c.dom.Text;
+
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.tencent.qq.QQ;
@@ -28,6 +30,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     ImageView iv_head;
     TextView accountName;
     TextView accountExit;
+    RoundedBitmapDrawable initIcon = null;
+    String text = null;
 
     @Nullable
     @Override
@@ -50,6 +54,13 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         iv_head.setOnClickListener(this);
         accountName.setOnClickListener(this);
         accountExit.setOnClickListener(this);
+
+        if (initIcon != null) {
+            iv_head.setImageDrawable(initIcon);
+        }
+        if(text!=null){
+            accountName.setText(text);
+        }
     }
 
     @Override
@@ -80,7 +91,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         if(data!=null) {
             String headUrl = data.getStringExtra("icon");
-            String name = data.getStringExtra("username");
+            final String name = data.getStringExtra("username");
 
             //生成圆形图片
             Glide.with(this).load(headUrl).asBitmap().centerCrop().into(new BitmapImageViewTarget(iv_head) {
@@ -89,6 +100,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                     RoundedBitmapDrawable circularBitmapDrawable =
                             RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
                     circularBitmapDrawable.setCircular(true);
+                    initIcon = circularBitmapDrawable;
+                    text = name;
                     iv_head.setImageDrawable(circularBitmapDrawable);
                 }
             });
