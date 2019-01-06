@@ -1,5 +1,8 @@
 package com.ryan.newsapp.adapter;
 
+/*
+    查看英雄详细信息的实体类，存放英雄的图片信息，便于数据传递
+ */
 
 
 public class LegendPics {

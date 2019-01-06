@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.print.PrinterId;
 
+/*
+    创建本地sqlite英雄信息表
+ */
 public class DbHelper  extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME="LOL.DB";

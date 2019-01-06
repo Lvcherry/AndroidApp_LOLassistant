@@ -46,6 +46,9 @@ import com.ryan.newsapp.utils.HttpUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+/*
+    资讯页面fragment
+ */
 public class NewsFragment extends Fragment implements View.OnClickListener{
 
     private List<String> titlesList ;

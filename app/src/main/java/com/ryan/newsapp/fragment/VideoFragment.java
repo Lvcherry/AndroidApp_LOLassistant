@@ -28,6 +28,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import com.ryan.newsapp.R;
 import com.ryan.newsapp.utils.ManagerApi;
 
+/*
+    查看视频fragment
+ */
 public class VideoFragment extends Fragment implements ViewPager.OnPageChangeListener{
 
     private final String COMMON = "clientvideo";

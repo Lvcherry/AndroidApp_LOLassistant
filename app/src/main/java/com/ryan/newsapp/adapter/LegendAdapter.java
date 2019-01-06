@@ -15,7 +15,9 @@ import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.List;
-
+/*
+    显示英雄列表时的gridview的自定义适配器设计
+ */
 public class LegendAdapter extends BaseAdapter
 {
     private List<HashMap<String,GridViewItem>> list;

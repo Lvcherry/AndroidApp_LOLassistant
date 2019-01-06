@@ -22,6 +22,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+/*
+    英雄详细信息界面页
+    连接MySQL数据库
+    执行相关查询操作
+    刷新用户界面
+ */
 public class LegendInfoActivity extends AppCompatActivity {
 
 

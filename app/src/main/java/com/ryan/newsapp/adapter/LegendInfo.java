@@ -1,5 +1,8 @@
 package com.ryan.newsapp.adapter;
 
+/*
+    存放英雄详细信息的实体类，便于数据的传达
+ */
 public class LegendInfo {
 
     public String legend_name = null;

@@ -22,6 +22,9 @@ import java.util.List;
 
 import com.ryan.newsapp.R;
 
+/*
+    视频界面的自定义适配器
+ */
 public class VideoItemAdapter extends BaseAdapter {
 
     private Handler handler = new Handler(){

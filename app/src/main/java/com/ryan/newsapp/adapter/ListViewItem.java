@@ -2,6 +2,9 @@ package com.ryan.newsapp.adapter;
 
 import android.graphics.Bitmap;
 
+/*
+    资讯页面的list view控件的子item设计
+ */
 public class ListViewItem {
 
     private int strategyTitle;

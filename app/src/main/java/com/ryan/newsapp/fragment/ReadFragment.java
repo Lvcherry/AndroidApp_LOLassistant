@@ -32,6 +32,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/*
+    查看英雄信息的fragment
+ */
 
 public class ReadFragment  extends Fragment {
 

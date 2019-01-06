@@ -14,6 +14,9 @@ import com.ryan.newsapp.R;
 import java.util.HashMap;
 import java.util.List;
 
+/*
+    查看资讯页面中list view的适配器自定义设计
+ */
 public class LegendNewsAdapter extends BaseAdapter{
 
     private List<ListViewItem> list;

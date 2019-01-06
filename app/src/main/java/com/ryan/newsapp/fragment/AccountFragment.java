@@ -25,6 +25,9 @@ import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.tencent.qq.QQ;
 
+/*
+    账号登陆fragment
+ */
 public class AccountFragment extends Fragment implements View.OnClickListener {
 
     ImageView iv_head;

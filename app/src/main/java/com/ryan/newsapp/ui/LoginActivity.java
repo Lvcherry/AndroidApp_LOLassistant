@@ -20,6 +20,9 @@ import com.ryan.newsapp.R;
 import com.ryan.newsapp.fragment.AccountFragment;
 
 
+/*
+    登陆界面
+ */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     @Override

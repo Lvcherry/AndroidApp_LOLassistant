@@ -2,6 +2,9 @@ package com.ryan.newsapp.entity;
 
 import java.util.List;
 
+/*
+    视频实体类
+ */
 public class VideoEntity {
 
     private int totalPage;

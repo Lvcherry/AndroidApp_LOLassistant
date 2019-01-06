@@ -9,6 +9,9 @@ import retrofit2.http.Query;
 import com.ryan.newsapp.entity.VideoEntity;
 import com.ryan.newsapp.utils.ManagerApi;
 
+/*
+    视频接口
+ */
 public interface VideoInterface {
 
     @GET(ManagerApi.VIDEO_JX)

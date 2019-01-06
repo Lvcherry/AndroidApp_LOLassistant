@@ -16,6 +16,10 @@ import com.ryan.newsapp.R.*;
 
 import java.io.ByteArrayOutputStream;
 
+
+/*
+    定义本地sqlite操作，将图片以二进制数据存入sqlite数据库中
+ */
 public class DbManager {
 
     private DbHelper dbHelper;
